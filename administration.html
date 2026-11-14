@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Espace de démonstration pour gérer les inscriptions, les paiements, les élèves et les enseignants de l'Institut Horizon.">
+  <title>Espace équipe — Institut Horizon</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/administration.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navigation principale">
+      <a class="brand" href="index.html"><span class="brand-mark">H</span> Institut <strong>Horizon</strong></a>
+      <div class="nav-links">
+        <a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a href="formations.html">Formations</a>
+        <a href="etudiants.html">Étudiants</a><a href="enseignants.html">Enseignants</a>
+        <a href="actualites.html">Actualités</a><a href="contact.html">Contact</a>
+      </div>
+      <a class="button button-small active" href="administration.html">Espace équipe <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main>
+    <section class="page-hero page-hero-compact">
+      <div class="container">
+        <p class="eyebrow eyebrow-light">Espace réservé à l’équipe</p>
+        <h1>Gérer le <span>campus.</span></h1>
+        <p>Les administrateurs traitent les inscriptions, suivent les versements et gèrent les dossiers des élèves et des enseignants. Les enseignants consultent les informations des élèves.</p>
+      </div>
+    </section>
+    <section class="section section-soft">
+      <div class="container">
+        <div id="login-panel" class="portal-login">
+          <div class="form-aside">
+            <p class="eyebrow">Connexion équipe</p>
+            <h2>Bienvenue dans votre <span>espace.</span></h2>
+            <p>Choisissez votre rôle pour accéder aux outils correspondants.</p>
+          </div>
+          <form id="login-form" class="form-card" aria-label="Connexion de démonstration">
+            <p class="portal-demo-notice">Prototype local uniquement : les données restent dans ce navigateur. N’utilisez pas de vraies données personnelles. Cette connexion ne sécurise pas l’accès.</p>
+            <div class="form-field">
+              <label for="role">Votre rôle</label>
+              <select id="role" name="role">
+                <option value="admin">Administrateur</option>
+                <option value="teacher">Enseignant</option>
+              </select>
+            </div>
+            <div class="form-field portal-field-spaced">
+              <label for="login-email">Adresse e-mail</label>
+              <input id="login-email" name="email" type="email" autocomplete="username" required>
+            </div>
+            <div class="form-field portal-field-spaced">
+              <label for="login-password">Mot de passe</label>
+              <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+            </div>
+            <p class="portal-demo-credentials">Comptes de démonstration : admin@demo.fr / admin123 ou enseignant@demo.fr / prof123</p>
+            <div class="form-actions">
+              <button class="button" type="submit">Se connecter <span aria-hidden="true">→</span></button>
+            </div>
+            <p id="login-error" class="portal-error" role="alert" hidden></p>
+          </form>
+        </div>
+        <section id="workspace" class="portal-workspace" aria-live="polite" hidden>
+          <div class="portal-workspace-heading">
+            <div><p class="eyebrow">Tableau de bord</p><h2 id="workspace-title">Espace équipe</h2></div>
+            <button id="logout-button" class="button button-outline" type="button">Se déconnecter</button>
+          </div>
+          <p id="workspace-notice" class="portal-demo-notice">Prototype local : les modifications sont enregistrées dans ce navigateur uniquement, sans contrôle d’accès réel.</p>
+          <div class="portal-tabs" role="tablist" aria-label="Dossiers à consulter">
+            <button class="portal-tab active" id="students-tab" type="button" role="tab" aria-selected="true" aria-controls="students-panel">Élèves</button>
+            <button class="portal-tab" id="teachers-tab" type="button" role="tab" aria-selected="false" aria-controls="teachers-panel">Enseignants</button>
+            <button class="portal-tab admin-only" id="applications-tab" type="button" role="tab" aria-selected="false" aria-controls="applications-panel" hidden>Inscriptions</button>
+            <button class="portal-tab admin-only" id="payments-tab" type="button" role="tab" aria-selected="false" aria-controls="payments-panel" hidden>Paiements</button>
+          </div>
+          <section id="students-panel" class="portal-record-panel" role="tabpanel" aria-labelledby="students-tab">
+            <div class="portal-admin-top">
+              <div><h3>Dossiers des élèves</h3><p>Informations pédagogiques et coordonnées.</p></div>
+              <button id="add-student-button" class="button admin-only" type="button">＋ Inscrire un élève</button>
+              <label class="portal-search-label" for="student-search">Rechercher un élève</label>
+              <input class="portal-search" id="student-search" type="search" placeholder="Nom, identifiant, formation…">
+            </div>
+            <form id="student-form" class="portal-record-form" hidden>
+              <h3 id="student-form-title">Ajouter un élève</h3>
+              <input type="hidden" name="recordId">
+              <div class="form-grid">
+                <div class="form-field"><label for="student-name">Nom complet *</label><input id="student-name" name="name" required></div>
+                <div class="form-field"><label for="student-code">Identifiant *</label><input id="student-code" name="code" required></div>
+                <div class="form-field"><label for="student-email">E-mail</label><input id="student-email" name="email" type="email"></div>
+                <div class="form-field"><label for="student-phone">Téléphone</label><input id="student-phone" name="phone" type="tel"></div>
+                <div class="form-field"><label for="student-birth-date">Date de naissance</label><input id="student-birth-date" name="birthDate" type="date"></div>
+                <div class="form-field"><label for="student-level">Niveau d’études</label><input id="student-level" name="level"></div>
+                <div class="form-field"><label for="student-program">Formation</label><input id="student-program" name="program"></div>
+                <div class="form-field"><label for="student-fee-due">Frais d’inscription (MAD)</label><input id="student-fee-due" name="feeDue" type="number" min="0" step="0.01" placeholder="0"></div>
+                <div class="form-field form-field-wide"><label for="student-address">Adresse</label><input id="student-address" name="address"></div>
+                <div class="form-field"><label for="student-grade">Moyenne / note</label><input id="student-grade" name="grade"></div>
+                <div class="form-field"><label for="student-attendance">Présence</label><input id="student-attendance" name="attendance" placeholder="Ex. 95 %"></div>
+                <div class="form-field form-field-wide"><label for="student-application-message">Projet / demande d’inscription</label><textarea id="student-application-message" name="applicationMessage" rows="3"></textarea></div>
+                <div class="form-field form-field-wide"><label for="student-notes">Observations</label><textarea id="student-notes" name="notes" rows="3"></textarea></div>
+              </div>
+              <div class="form-actions">
+                <button class="button" type="submit">Enregistrer l’élève</button>
+                <button id="cancel-student-edit" class="button button-outline" type="button">Annuler</button>
+              </div>
+              <p id="student-error" class="portal-error" role="alert" hidden></p>
+            </form>
+            <div class="portal-table-wrap">
+              <table class="portal-table">
+                <thead><tr><th>Élève</th><th>Identifiant</th><th>E-mail</th><th>Téléphone</th><th>Date de naissance</th><th>Niveau</th><th>Adresse</th><th>Formation</th><th>Note</th><th>Présence</th><th>Projet / demande</th><th>Observations</th><th class="admin-only">Actions</th></tr></thead>
+                <tbody id="students-list"></tbody>
+              </table>
+              <p id="students-empty" class="portal-empty" hidden>Aucun élève trouvé.</p>
+            </div>
+          </section>
+          <section id="applications-panel" class="portal-record-panel" role="tabpanel" aria-labelledby="applications-tab" hidden>
+            <div class="portal-admin-top">
+              <div><h3>Demandes d’inscription</h3><p>Consultez les candidatures reçues et inscrivez les candidats retenus.</p></div>
+            </div>
+            <p id="applications-feedback" class="portal-feedback" role="status" hidden></p>
+            <div class="portal-table-wrap">
+              <table class="portal-table">
+                <thead><tr><th>Candidat</th><th>Coordonnées</th><th>Formation</th><th>Niveau</th><th>Reçue le</th><th>Détails</th><th>Statut</th><th>Actions</th></tr></thead>
+                <tbody id="applications-list"></tbody>
+              </table>
+              <p id="applications-empty" class="portal-empty" hidden>Aucune demande d’inscription pour le moment.</p>
+            </div>
+          </section>
+          <section id="payments-panel" class="portal-record-panel" role="tabpanel" aria-labelledby="payments-tab" hidden>
+            <div class="portal-admin-top">
+              <div><h3>Frais d’inscription et versements</h3><p>Montant d’inscription, sommes reçues et solde restant par élève — en MAD.</p></div>
+              <button id="add-payment-button" class="button" type="button">＋ Enregistrer un versement</button>
+            </div>
+            <p class="portal-demo-notice">Suivi de démonstration réservé à l’administration. Les versements ne sont enregistrés que dans ce navigateur.</p>
+            <form id="payment-form" class="portal-record-form" hidden>
+              <h3>Enregistrer un versement</h3>
+              <div class="form-grid">
+                <div class="form-field"><label for="payment-student">Élève *</label><select id="payment-student" name="studentId" required></select></div>
+                <div class="form-field"><label for="payment-amount">Montant reçu (MAD) *</label><input id="payment-amount" name="amount" type="number" min="0.01" step="0.01" required></div>
+                <div class="form-field"><label for="payment-date">Date du versement *</label><input id="payment-date" name="date" type="date" required></div>
+                <div class="form-field"><label for="payment-method">Mode de paiement</label><select id="payment-method" name="method"><option value="">Non précisé</option><option>Espèces</option><option>Virement</option><option>Carte bancaire</option><option>Chèque</option><option>Autre</option></select></div>
+                <div class="form-field form-field-wide"><label for="payment-reference">Référence / remarque</label><input id="payment-reference" name="reference"></div>
+              </div>
+              <div class="form-actions">
+                <button class="button" type="submit">Enregistrer le versement</button>
+                <button id="cancel-payment" class="button button-outline" type="button">Annuler</button>
+              </div>
+              <p id="payment-error" class="portal-error" role="alert" hidden></p>
+            </form>
+            <div class="portal-table-wrap">
+              <table class="portal-table">
+                <thead><tr><th>Élève</th><th>Identifiant</th><th>Frais dus</th><th>Total versé</th><th>Solde restant</th><th>Historique des versements</th><th>Actions</th></tr></thead>
+                <tbody id="payments-list"></tbody>
+              </table>
+              <p id="payments-empty" class="portal-empty" hidden>Aucun élève enregistré.</p>
+            </div>
+          </section>
+          <section id="teachers-panel" class="portal-record-panel" role="tabpanel" aria-labelledby="teachers-tab" hidden>
+            <div class="portal-admin-top">
+              <div><h3>Dossiers des enseignants</h3><p>Gestion réservée aux administrateurs.</p></div>
+              <button id="add-teacher-button" class="button admin-only" type="button">＋ Ajouter un enseignant</button>
+            </div>
+            <form id="teacher-form" class="portal-record-form" hidden>
+              <h3 id="teacher-form-title">Ajouter un enseignant</h3>
+              <input type="hidden" name="recordId">
+              <div class="form-grid">
+                <div class="form-field"><label for="teacher-name">Nom complet *</label><input id="teacher-name" name="name" required></div>
+                <div class="form-field"><label for="teacher-email">E-mail *</label><input id="teacher-email" name="email" type="email" required></div>
+                <div class="form-field"><label for="teacher-phone">Téléphone</label><input id="teacher-phone" name="phone" type="tel"></div>
+                <div class="form-field"><label for="teacher-subject">Matière / spécialité *</label><input id="teacher-subject" name="subject" required></div>
+              </div>
+              <div class="form-actions">
+                <button class="button" type="submit">Enregistrer l’enseignant</button>
+                <button id="cancel-teacher-edit" class="button button-outline" type="button">Annuler</button>
+              </div>
+              <p id="teacher-error" class="portal-error" role="alert" hidden></p>
+            </form>
+            <div class="portal-table-wrap">
+              <table class="portal-table">
+                <thead><tr><th>Enseignant</th><th>E-mail</th><th>Téléphone</th><th>Matière / spécialité</th><th class="admin-only">Actions</th></tr></thead>
+                <tbody id="teachers-list"></tbody>
+              </table>
+              <p id="teachers-empty" class="portal-empty" hidden>Aucun enseignant enregistré.</p>
+            </div>
+          </section>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div><a class="brand brand-footer" href="index.html"><span class="brand-mark">H</span> Institut <strong>Horizon</strong></a><p>Apprendre, créer, réussir.<br>Une école ouverte sur le monde.</p></div>
+      <div class="footer-links"><h2>Explorer</h2><a href="apropos.html">À propos</a><a href="formations.html">Formations</a><a href="etudiants.html">Vie étudiante</a></div>
+      <div class="footer-links"><h2>Nous contacter</h2><a href="contact.html">12 rue des Écoles, Rabat</a><a href="tel:+2120674381171">06 74 38 11 71</a><a href="mailto:bonjour@institut-horizon.ma">bonjour@institut-horizon.ma</a></div>
+      <div class="footer-apply"><p>Retour à l’espace étudiant</p><a class="text-link text-link-light" href="connexion.html">Connexion étudiant <span aria-hidden="true">→</span></a></div>
+    </div>
+    <div class="container footer-bottom"><span>© 2026 Institut Horizon</span></div>
+  </footer>
+</body>
+</html>

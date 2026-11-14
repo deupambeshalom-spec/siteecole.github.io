@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Préparez votre candidature à l'Institut Horizon.">
+  <title>Inscription — Institut Horizon</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/inscription.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navigation principale">
+      <a class="brand" href="index.html"><span class="brand-mark">H</span> Institut <strong>Horizon</strong></a>
+      <div class="nav-links"><a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a
+          href="formations.html">Formations</a><a href="etudiants.html">Étudiants</a><a
+          href="enseignants.html">Enseignants</a><a href="actualites.html">Actualités</a><a
+          href="contact.html">Contact</a></div>
+      <a class="button button-small active" href="inscription.html">Candidater <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main>
+    <section class="page-hero page-hero-compact">
+      <div class="container">
+        <p class="eyebrow eyebrow-light">Rejoindre Horizon</p>
+        <h1>Faisons connaissance.</h1>
+        <p>Parlez-nous de votre projet : notre équipe vous guidera dans les prochaines étapes.</p>
+      </div>
+    </section>
+    <section class="section section-soft">
+      <div class="container form-layout">
+        <div class="form-aside">
+          <p class="eyebrow">Candidature</p>
+          <h2>Votre avenir commence par une <span>conversation.</span></h2>
+          <p>Complétez ce formulaire,notre équipe d'admissions est là pour répondre à vos questions sur
+            les parcours et les admissions.</p>
+          <div class="aside-contact"><strong>Besoin d’un renseignement ?</strong><a
+              href="mailto:admissions@institut-horizon.fr">admissions@institut-horizon.fr</a><a
+              href="tel:+33142805520">01 42 80 55 20</a></div>
+        </div>
+        <form id="application-form" class="form-card">
+          <p class="portal-demo-notice">Prototype local : votre demande sera visible dans l’espace équipe sur ce navigateur. N’envoyez pas de données personnelles réelles.</p>
+          <p class="form-note">Les champs marqués d’un * sont obligatoires.</p>
+          <div class="form-grid">
+            <div class="form-field"><label for="nom">Nom *</label><input id="nom" name="nom" autocomplete="family-name"
+                required></div>
+            <div class="form-field"><label for="prenom">Prénom *</label><input id="prenom" name="prenom"
+                autocomplete="given-name" required></div>
+            <div class="form-field"><label for="naissance">Date de naissance</label><input id="naissance"
+                name="naissance" type="date"></div>
+            <div class="form-field"><label for="email">Adresse e-mail *</label><input id="email" name="email"
+                type="email" autocomplete="email" required></div>
+            <div class="form-field"><label for="telephone">Téléphone</label><input id="telephone" name="telephone"
+                type="tel" autocomplete="tel"></div>
+            <div class="form-field"><label for="formation">Formation souhaitée *</label><select id="formation"
+                name="formation" required>
+                <option value="">Choisir une formation</option>
+                <option>Management &amp; stratégie</option>
+                <option>Design numérique &amp; UX</option>
+                <option>Communication &amp; médias</option>
+                <option>Gestion des ressources humaines</option>
+                <option>Entrepreneuriat &amp; innovation</option>
+                <option>Data &amp; décision</option>
+              </select></div>
+            <div class="form-field"><label for="niveau">Niveau d’études actuel</label><select id="niveau" name="niveau">
+                <option value="">Choisir un niveau</option>
+                <option>Baccalauréat</option>
+                <option>Bac+1</option>
+                <option>Bac+2</option>
+                <option>Bac+3</option>
+                <option>Bac+4 ou plus</option>
+              </select></div>
+            <div class="form-field form-field-wide"><label for="adresse">Adresse</label><input id="adresse"
+                name="adresse" autocomplete="street-address"></div>
+            <div class="form-field form-field-wide"><label for="message">Votre projet ou votre question</label><textarea
+                id="message" name="message" rows="4" placeholder="Quelques mots pour nous en dire plus…"></textarea>
+            </div>
+          </div>
+          <div class="form-actions"><button class="button" type="submit">Envoyer ma demande <span
+                aria-hidden="true">→</span></button><button class="button button-outline"
+              type="reset">Réinitialiser</button></div>
+          <p id="application-feedback" class="portal-feedback" role="status" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div><a class="brand brand-footer" href="index.html"><span class="brand-mark">H</span> Institut
+          <strong>Horizon</strong></a>
+        <p>Apprendre, créer, réussir.<br>Une école ouverte sur le monde.</p>
+      </div>
+      <div class="footer-links">
+        <h2>Explorer</h2><a href="apropos.html">À propos</a><a href="formations.html">Formations</a><a
+          href="etudiants.html">Vie étudiante</a>
+      </div>
+      <div class="footer-links">
+        <h2>Nous contacter</h2><a href="contact.html">12 rue des Écoles, Rabat</a><a href="tel:+212 06 74 38 11 71">06
+          74 38 11 71</a><a href="mailto:bonjour@institut-horizon.ma">bonjour@institut-horizon.ma</a>
+      </div>
+      <div class="footer-apply">
+        <p>Une question sur votre avenir ?</p><a class="text-link text-link-light" href="contact.html">Parlons-en <span
+            aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="container footer-bottom"><span>© 2026 Institut Horizon</span></div>
+  </footer>
+</body>
+
+</html>
